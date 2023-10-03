@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Grace's weather forecast</title>
+    <link rel="stylesheet" href="./style.css">
+    <script type="module" src="index.js"></script>
+</head>
+
+<body>
+    <main>
+        <h1>Grace's AI weather forecast</h1>
+        <h2>Enter weather in Fahrenheit</h2>
+        <!-- <form action=""> -->
+        <input id="inputValue" type="text" placeholder="Temperature">
+        <button id="forecastButton">Submit</button>
+        <!-- </form> -->
+        <div id="weather-forecast-div"></div>
+        <div>&nbsp</div>
+        <div>Open AI Quote</div>
+        <textarea id="AIQuote" readonly rows="4" cols="50"></textarea>
+
+    </main>
+    <script type="text/javascript">
+        document.getElementById("forecastButton").addEventListener("click", function() {
+            fetch('https://weather-d5e5.onrender.com/quote?temp=' + document.getElementById("inputValue").value).then((res) => {
+                return res.text()
+            }).then((data) => {
+                document.getElementById("AIQuote").value = data
+            }).catch((err) => console.debug(err));
+        })
+    </script>
+</body>
+
+</html>
